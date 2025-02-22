@@ -15,7 +15,8 @@ base_url_api = config.get("base_url_api", "")
 class ApiPage:
     """
     Класс для взаимодействия с API платформы.
-    Содержит методы для работы с корзиной: добавление, удаление и изменение товаров.
+    Содержит методы для работы с корзиной: добавление,
+     удаление и изменение товаров.
     """
 
     def __init__(self, url: str):
@@ -27,7 +28,9 @@ class ApiPage:
         """
         self.url = url
 
-    def add_product_to_cart_from_preview(self, quantity: str) -> Tuple[Dict[str, Any], int]:
+    def add_product_to_cart_from_preview(
+        self, quantity: str
+    ) -> Tuple[Dict[str, Any], int]:
         """
         Добавляет товар в корзину через превью.
 
@@ -44,7 +47,7 @@ class ApiPage:
         response = requests.post(
             f"{self.url}add_products_to_cart_from_preview.php",
             data=request_data,
-            headers={"Content-Type": "application/x-www-form-urlencoded"}
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
 
         return response.json(), response.status_code
@@ -59,7 +62,7 @@ class ApiPage:
         response = requests.post(
             f"{self.url}delete_products_from_cart_preview.php",
             data=api_data,
-            headers={"Content-Type": "application/x-www-form-urlencoded"}
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
 
         return response.json(), response.status_code
@@ -74,7 +77,7 @@ class ApiPage:
         response = requests.post(
             f"{self.url}delete_products_from_cart_preview_by_productID.php",
             data=api_data,
-            headers={"Content-Type": "application/x-www-form-urlencoded"}
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
         )
 
         return response.json(), response.status_code

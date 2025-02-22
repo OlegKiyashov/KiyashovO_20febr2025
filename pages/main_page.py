@@ -33,7 +33,8 @@ class MainPage:
         element.click()
 
     @allure.step(
-        "Выполняем поиск товара в поисковой строке по переданному наименованию - '{product_name}'."
+        "Выполняем поиск товара в поисковой строке по переданному "
+        "наименованию - '{product_name}'."
     )
     def search_product_by_search_field(self, product_name: str):
         """
@@ -52,14 +53,16 @@ class MainPage:
         self.find_element_and_click("div.searchpro__field-button-container")
 
     @allure.step(
-        "Находим на странице результатов поиска необходимый товар - '{product_name_to_add}' и добавляем его в корзину."
+        "Находим на странице результатов поиска необходимый "
+        "товар - '{product_name_to_add}' и добавляем его в корзину."
     )
     def add_product_to_cart(self, product_name_to_add: str) -> str:
         """
         Находит товар на странице поиска и добавляет его в корзину.
 
         Args:
-            product_name_to_add (str): Наименование товара, который нужно добавить в корзину.
+            product_name_to_add (str): Наименование товара,
+             который нужно добавить в корзину.
 
         Returns:
             str: Наименование добавленного товара.
@@ -86,12 +89,16 @@ class MainPage:
                 add_button.click()
                 return product_name
         # Если товар не найден, выбрасываем исключение
-        raise ValueError(f"Товар с названием '{product_name_to_add}' не найден.")
+        raise ValueError(
+            f"Товар с названием '{
+                         product_name_to_add}' не найден."
+        )
 
     @allure.step("Переходим на страницу корзины.")
     def go_to_cart(self):
         """
-        Переходит на страницу корзины через соответствующий элемент на главной странице.
+        Переходит на страницу корзины через соответствующий
+         элемент на главной странице.
         """
         # Кликаем на ссылку корзины
         self.find_element_and_click("a[href='/cart/']")

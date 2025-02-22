@@ -22,14 +22,17 @@ def browser():
     Фикстура для инициализации браузера.
 
     - Устанавливает и запускает WebDriver для Chrome.
-    - Открывает базовый URL, устанавливает неявное ожидание и разворачивает окно.
+    - Открывает базовый URL, устанавливает неявное ожидание
+     и разворачивает окно.
     - После выполнения теста браузер автоматически закрывается.
 
     Returns:
         WebDriver: Экземпляр браузера.
     """
     # Устанавливаем и запускаем WebDriver для Chrome
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(
+        service=ChromeService(ChromeDriverManager().install())
+    )
     driver.get(BASE_URL_UI)  # Переход на главную страницу
     driver.implicitly_wait(4)  # Устанавливаем неявное ожидание
     driver.maximize_window()  # Разворачиваем окно браузера

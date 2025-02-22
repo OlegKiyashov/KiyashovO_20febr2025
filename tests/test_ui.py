@@ -12,7 +12,8 @@ PRODUCT_NAME = config.get("product_name")
 @allure.feature("UI тесты для функционала корзины")
 @allure.title("Тест поиска и добавления товара в корзину")
 @allure.description(
-    "Выполняем поиск товара по названию, проверяем успешное добавление в корзину."
+    "Выполняем поиск товара по названию, проверяем успешное "
+    "добавление в корзину."
 )
 @allure.id(1)
 @allure.severity("Blocker")
@@ -39,7 +40,8 @@ def test_search_product(main_page, cart_page):
 @allure.feature("UI тесты для функционала корзины")
 @allure.title("Тест удаления товара из корзины")
 @allure.description(
-    "Добавляем товар в корзину, затем удаляем его и проверяем отсутствие в корзине."
+    "Добавляем товар в корзину, затем удаляем его "
+    "и проверяем отсутствие в корзине."
 )
 @allure.id(2)
 @allure.severity("Blocker")
@@ -64,7 +66,8 @@ def test_delete_product_from_cart(main_page, cart_page):
 @allure.feature("UI тесты для функционала корзины")
 @allure.title("Тест изменения количества товара в корзине")
 @allure.description(
-    "Добавляем товар в корзину, меняем количество и проверяем корректность изменения."
+    "Добавляем товар в корзину, меняем количество"
+    " и проверяем корректность изменения."
 )
 @allure.id(3)
 @allure.severity("Blocker")
@@ -86,13 +89,15 @@ def test_change_amount(main_page, cart_page):
 
     # Изменяем количество товара
     amount_to_add = 2
-    cart_page.change_amount_product_in_cart(PRODUCT_NAME, "more", amount_to_add)
+    cart_page.change_amount_product_in_cart(
+        PRODUCT_NAME, "more", amount_to_add
+    )
 
     # Проверяем обновленное количество
     amount_after = int(cart_page.get_product_quantity(PRODUCT_NAME))
     expected_amount = amount_before + amount_to_add
 
     with allure.step("Проверяем, что количество товара изменилось корректно"):
-        assert amount_after == expected_amount, (
-            f"Ожидалось {expected_amount}, получено {amount_after}."
-        )
+        assert (
+            amount_after == expected_amount
+        ), f"Ожидалось {expected_amount}, получено {amount_after}."
