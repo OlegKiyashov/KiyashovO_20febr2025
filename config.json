@@ -1,0 +1,16 @@
+{
+    "base_url_ui": "https://altaivita.ru/",
+    "base_url_api": "https://altaivita.ru/engine/cart/",
+    "product_name": "Огневка Норма",
+    "api": {
+        "product_id": "2305",
+        "LANG_key": "ru",
+        "S_wh": "1",
+        "S_CID": "6d41690293da1d283a03f36c033d59d5",
+        "S_cur_code": "rub",
+        "S_koef": "1",
+        "quantity": "0",
+        "S_hint_code": "",
+        "S_customerID": "372162"
+    }
+}
