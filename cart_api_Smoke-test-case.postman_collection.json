@@ -561,7 +561,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", pm.response.json().sum_quantity);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -769,18 +770,20 @@
 							"script": {
 								"exec": [
 									"// Получаем значение количества товара из переменных коллекции Postman\r",
-									"var quantity = pm.collectionVariables.get(\"quantity\");\r",
+									"var quantity = pm.collectionVariables.get(\"quantitycart\");\r",
+									"\r",
 									"\r",
 									"pm.test(\"Количество товара изменено\", function () {\r",
-									"    // Парсим JSON-ответ от сервера, который содержит актуальное количество товара\r",
-									"    var jsonData = pm.response.json();\r",
-									"    \r",
-									"    // Проверяем, что значение sum_quantity в ответе API соответствует ожидаемому значению (quantity)\r",
-									"    pm.expect(jsonData.sum_quantity).to.eql(quantity);\r",
+									"   // Парсим JSON-ответ от сервера, который содержит актуальное количество товара\r",
+									"   var jsonData = pm.response.json();\r",
+									"  \r",
+									"   // Проверяем, что значение sum_quantity в ответе API соответствует ожидаемому значению (quantity)\r",
+									"   pm.expect(jsonData.sum_quantity).to.eql(quantity);\r",
 									"});\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -795,12 +798,12 @@
 							"urlencoded": [
 								{
 									"key": "itemID",
-									"value": "793400",
+									"value": "797884",
 									"type": "text"
 								},
 								{
 									"key": "quantity",
-									"value": "{{quantity}}",
+									"value": "{{quantitycart}}",
 									"type": "text"
 								},
 								{
@@ -965,16 +968,26 @@
 	},
 	"event": [
 		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
 			"listen": "test",
 			"script": {
+				"type": "text/javascript",
 				"exec": [
 					"",
 					"pm.test(\"Status code is 200\", function () {",
 					"    pm.response.to.have.status(200);",
 					"});",
 					""
-				],
-				"type": "text/javascript"
+				]
 			}
 		}
 	],
@@ -1007,6 +1020,11 @@
 		{
 			"key": "product_id",
 			"value": "2305",
+			"type": "string"
+		},
+		{
+			"key": "quantitycart",
+			"value": "5",
 			"type": "string"
 		}
 	]
