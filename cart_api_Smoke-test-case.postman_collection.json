@@ -26,7 +26,7 @@
 									"// Преобразуем количество товара из строки в число\r",
 									"quantity = parseInt(quantity);\r",
 									"\r",
-									"pm.test(\"Товар добавлен в корзину\", function () {\r",
+									"pm.test(\"Товар добавлен в корзину со страницы превью\", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -41,7 +41,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", pm.response.json().sum_quantity);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -130,7 +131,7 @@
 									"// Преобразуем количество товара из строки в число\r",
 									"quantity = parseInt(quantity);\r",
 									"\r",
-									"pm.test(\"Товар добавлен в корзину \", function () {\r",
+									"pm.test(\"Увеличено количество товара со страницы превью\", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -145,7 +146,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", pm.response.json().sum_quantity);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -233,7 +235,7 @@
 									"// Преобразуем количество товара из строки в число\r",
 									"quantity = parseInt(quantity);\r",
 									"\r",
-									"pm.test(\"Товар удален из корзины\", function () {\r",
+									"pm.test(\"Уменьшено количество товара со страницы превью\", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -248,7 +250,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", pm.response.json().sum_quantity);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -328,7 +331,7 @@
 							"script": {
 								"exec": [
 									"//  проверяем, что sum_quantity равно 0\r",
-									"pm.test(\"Весь товар удален из корзины,sum_quantity равно 0\", function () {\r",
+									"pm.test(\"Весь товар удален из корзины\", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -340,7 +343,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", \"0\");\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -432,7 +436,7 @@
 									"// Преобразуем количество товара из строки в число\r",
 									"quantity = parseInt(quantity);\r",
 									"\r",
-									"pm.test(\"Товар добавлен в корзину\", function () {\r",
+									"pm.test(\"Товар добавлен в корзину со страницы товара\", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -447,7 +451,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", pm.response.json().sum_quantity);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -546,7 +551,7 @@
 									"// Преобразуем количество товара из строки в число\r",
 									"quantity = parseInt(quantity);\r",
 									"\r",
-									"pm.test(\"Товар добавлен в корзину\", function () {\r",
+									"pm.test(\"Увеличено количество товара со страницы товара \", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -660,7 +665,7 @@
 									"// Преобразуем количество товара из строки в число\r",
 									"quantity = parseInt(quantity);\r",
 									"\r",
-									"pm.test(\"Товар удален из корзины\", function () {\r",
+									"pm.test(\"Уменьшено количество товара со страницы товара\", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -675,7 +680,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", pm.response.json().sum_quantity);\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -773,7 +779,7 @@
 									"var quantity = pm.collectionVariables.get(\"quantitycart\");\r",
 									"\r",
 									"\r",
-									"pm.test(\"Количество товара изменено\", function () {\r",
+									"pm.test(\"Количество товара изменено на 5 на странице корзины\", function () {\r",
 									"   // Парсим JSON-ответ от сервера, который содержит актуальное количество товара\r",
 									"   var jsonData = pm.response.json();\r",
 									"  \r",
@@ -798,7 +804,7 @@
 							"urlencoded": [
 								{
 									"key": "itemID",
-									"value": "797884",
+									"value": "798124",
 									"type": "text"
 								},
 								{
@@ -869,7 +875,7 @@
 								"exec": [
 									"\r",
 									"//  проверяем, что sum_quantity равно 0\r",
-									"pm.test(\"Весь товар удален из корзины, sum_quantity равно 0\", function () {\r",
+									"pm.test(\"Весь товар удален из корзины\", function () {\r",
 									"    // Парсим JSON-ответ от сервера\r",
 									"    var jsonData = pm.response.json();\r",
 									"    \r",
@@ -881,7 +887,8 @@
 									"pm.collectionVariables.set(\"current_sum_quantity\", \"0\");\r",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
