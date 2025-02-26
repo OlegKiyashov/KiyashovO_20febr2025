@@ -176,3 +176,25 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+# Файлы среды разработки
+.vscode/
+.idea/
+*.iml
+
+# Кэш и временные файлы
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.tmp
+
+# Результаты тестов
+*.xml
+*.html
+*.json
+*.db
+*.sqlite3
+allure-results/
+test-reports/
+coverage/
+allure-results/
