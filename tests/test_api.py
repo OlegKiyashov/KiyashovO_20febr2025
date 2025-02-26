@@ -9,37 +9,24 @@ import allure
 @allure.id(1)
 @allure.severity("Blocker")
 def test_add_product_to_cart_from_preview(api):
-    """
-    Тест на добавление товара в корзину через превью.
-
-    Args:
-        api (AltaivitaApi): Экземпляр API клиента.
-    """
     amount = "1"  # Количество товаров для добавления
 
-    # Отправляем запрос на добавление товара в корзину
-    result_add_product, status_code = api.add_product_to_cart_from_preview(
-        amount
-    )
+    result_add_product, status_code = api.add_product_to_cart_from_preview(amount)
 
     with allure.step("Проверяем корректность статус-кода и ответа API"):
         assert (
             status_code == 200
-        ), f"Ожидался статус-код 200, но получен {
-            status_code}"
+        ), f"Ожидался статус-код 200, но получен {status_code}"
         assert (
             result_add_product["status"] == "ok"
         ), f"Ожидался статус 'ok', но получен {result_add_product['status']}"
         assert (
             result_add_product["btn_text"] == "Добавлено"
-        ), f"Ожидался текст кнопки 'Добавлено', но получен {
-                result_add_product['btn_text']}"
+        ), f"Ожидался текст кнопки 'Добавлено', но получен {result_add_product['btn_text']}"
         assert (
             result_add_product["sum_quantity"] == amount
-        ), f"Ожидалось количество {amount}, но получено {
-                result_add_product['sum_quantity']}"
+        ), f"Ожидалось количество {amount}, но получено {result_add_product['sum_quantity']}"
 
-    # Удаляем товар из корзины для очистки состояния
     api.delete_product_from_cart()
 
 
@@ -52,51 +39,36 @@ def test_add_product_to_cart_from_preview(api):
 @allure.id(2)
 @allure.severity("Blocker")
 def test_delete_product_from_cart(api):
-    """
-    Тест на удаление товара из корзины.
-
-    Args:
-        api (AltaivitaApi): Экземпляр API клиента.
-    """
     amount = "1"  # Количество товаров для добавления
 
-    # Добавляем товар в корзину
-    result_add_product, status_code = api.add_product_to_cart_from_preview(
-        amount
-    )
+    result_add_product, status_code = api.add_product_to_cart_from_preview(amount)
 
     with allure.step("Проверяем корректность добавления товара"):
         assert (
             status_code == 200
-        ), f"Ожидался статус-код 200, но получен {
-            status_code}"
+        ), f"Ожидался статус-код 200, но получен {status_code}"
         assert (
             result_add_product["status"] == "ok"
         ), f"Ожидался статус 'ok', но получен {result_add_product['status']}"
         assert (
             result_add_product["btn_text"] == "Добавлено"
-        ), f"Ожидался текст кнопки 'Добавлено', но получен {
-                result_add_product['btn_text']}"
+        ), f"Ожидался текст кнопки 'Добавлено', но получен {result_add_product['btn_text']}"
 
     amount_before_delete = int(result_add_product["sum_quantity"])
 
-    # Удаляем товар из корзины
     result_delete_product, status_code_delete = api.delete_product_from_cart()
     amount_after_delete = int(result_delete_product["sum_quantity"])
 
     with allure.step("Проверяем, что корзина пуста после удаления товара"):
         assert (
             status_code_delete == 200
-        ), f"Ожидался статус-код 200, но получен {
-            status_code_delete}"
+        ), f"Ожидался статус-код 200, но получен {status_code_delete}"
         assert (
             result_delete_product["status"] == "ok"
-        ), f"Ожидался статус 'ok', но получен {
-                result_delete_product['status']}"
+        ), f"Ожидался статус 'ok', но получен {result_delete_product['status']}"
         assert (
             amount_after_delete == 0
-        ), f"Ожидалось, что корзина пуста, но количество товаров: {
-                amount_after_delete}"
+        ), f"Ожидалось, что корзина пуста, но количество товаров: {amount_after_delete}"
         assert (
             amount_before_delete > amount_after_delete
         ), "Количество товаров в корзине не уменьшилось после удаления"
@@ -111,45 +83,30 @@ def test_delete_product_from_cart(api):
 @allure.id(3)
 @allure.severity("Blocker")
 def test_change_amount_product(api):
-    """
-    Тест на изменение количества товара в корзине.
-
-    Args:
-        api (AltaivitaApi): Экземпляр API клиента.
-    """
     amount = "2"  # Изначальное количество товара
 
-    # Добавляем товар в корзину
-    result_add_product, status_code = api.add_product_to_cart_from_preview(
-        amount
-    )
+    result_add_product, status_code = api.add_product_to_cart_from_preview(amount)
 
     with allure.step("Проверяем корректность добавления товара"):
         assert (
             status_code == 200
-        ), f"Ожидался статус-код 200, но получен {
-            status_code}"
+        ), f"Ожидался статус-код 200, но получен {status_code}"
         assert (
             result_add_product["status"] == "ok"
         ), f"Ожидался статус 'ok', но получен {result_add_product['status']}"
         assert (
             result_add_product["btn_text"] == "Добавлено"
-        ), f"Ожидался текст кнопки 'Добавлено', но получен {
-                result_add_product['btn_text']}"
+        ), f"Ожидался текст кнопки 'Добавлено', но получен {result_add_product['btn_text']}"
 
     amount_before_change = int(result_add_product["sum_quantity"])
 
-    # Изменяем количество товара в корзине
-    result_change, status_code_change = (
-        api.change_amount_product_from_preview()
-    )
+    result_change, status_code_change = api.change_amount_product_from_preview()
     amount_after_change = int(result_change["sum_quantity"])
 
     with allure.step("Проверяем корректность изменения количества товара"):
         assert (
             status_code_change == 200
-        ), f"Ожидался статус-код 200, но получен {
-            status_code_change}"
+        ), f"Ожидался статус-код 200, но получен {status_code_change}"
         assert (
             result_change["status"] == "ok"
         ), f"Ожидался статус 'ok', но получен {result_change['status']}"
@@ -158,5 +115,4 @@ def test_change_amount_product(api):
             amount_after_change == expected_amount
         ), f"Ожидалось {expected_amount}, но получено {amount_after_change}"
 
-    # Удаляем товар из корзины для очистки состояния
     api.delete_product_from_cart()

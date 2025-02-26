@@ -26,7 +26,6 @@ class MainPage:
         Args:
             css_selector (str): CSS селектор элемента.
         """
-        # Ожидаем, пока элемент станет кликабельным, и нажимаем на него
         element = WebDriverWait(self._driver, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, css_selector))
         )
@@ -43,13 +42,11 @@ class MainPage:
         Args:
             product_name (str): Наименование товара для поиска.
         """
-        # Находим поле поиска по его XPath и вводим название товара
         search_field = self._driver.find_element(
             By.XPATH, "//input[@placeholder='Поиск товаров']"
         )
         search_field.clear()  # Очищаем поле перед вводом
         search_field.send_keys(product_name)
-        # Нажимаем на кнопку поиска
         self.find_element_and_click("div.searchpro__field-button-container")
 
     @allure.step(
@@ -67,31 +64,25 @@ class MainPage:
         Returns:
             str: Наименование добавленного товара.
         """
-        # Ждем, пока загрузятся элементы с информацией о товарах
         WebDriverWait(self._driver, 20).until(
             EC.visibility_of_element_located(
                 (By.CSS_SELECTOR, "div.rating_search_product")
             )
         )
-        # Получаем список всех контейнеров с информацией о товарах
         product_info_containers = self._driver.find_elements(
             By.CSS_SELECTOR, "div.product__item"
         )
         for container in product_info_containers:
-            # Извлекаем название товара из атрибута "alt" изображения
             product_img = container.find_element(By.CSS_SELECTOR, "img")
             product_name = product_img.get_attribute("alt")
             if product_name == product_name_to_add:
-                # Если название совпадает, нажимаем кнопку "Добавить в корзину"
                 add_button = container.find_element(
                     By.CSS_SELECTOR, "div.product__buy button"
                 )
                 add_button.click()
                 return product_name
-        # Если товар не найден, выбрасываем исключение
         raise ValueError(
-            f"Товар с названием '{
-                         product_name_to_add}' не найден."
+            f"Товар с названием '{product_name_to_add}' не найден."
         )
 
     @allure.step("Переходим на страницу корзины.")
@@ -100,7 +91,5 @@ class MainPage:
         Переходит на страницу корзины через соответствующий
          элемент на главной странице.
         """
-        # Кликаем на ссылку корзины
         self.find_element_and_click("a[href='/cart/']")
-        # Подтверждаем переход, если появляется дополнительное окно
         self.find_element_and_click("a.dropdown-go-over")

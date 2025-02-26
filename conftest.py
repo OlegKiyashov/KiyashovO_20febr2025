@@ -11,25 +11,13 @@ from api.api_page import ApiPage
 with open("config.json", "r") as config_file:
     config = json.load(config_file)
 
-# Извлекаем базовые URL для UI и API
 BASE_URL_UI = config.get("base_url_ui")
 BASE_URL_API = config.get("base_url_api")
 
 
 @pytest.fixture
 def browser():
-    """
-    Фикстура для инициализации браузера.
-
-    - Устанавливает и запускает WebDriver для Chrome.
-    - Открывает базовый URL, устанавливает неявное ожидание
-     и разворачивает окно.
-    - После выполнения теста браузер автоматически закрывается.
-
-    Returns:
-        WebDriver: Экземпляр браузера.
-    """
-    # Устанавливаем и запускаем WebDriver для Chrome
+    """Фикстура для инициализации браузера."""
     driver = webdriver.Chrome(
         service=ChromeService(ChromeDriverManager().install())
     )
@@ -44,38 +32,17 @@ def browser():
 
 @pytest.fixture
 def main_page(browser):
-    """
-    Фикстура для работы с главной страницей.
-
-    Args:
-        browser (WebDriver): Экземпляр браузера.
-
-    Returns:
-        MainPage: Объект главной страницы.
-    """
+    """Фикстура для работы с главной страницей."""
     return MainPage(browser)
 
 
 @pytest.fixture
 def cart_page(browser):
-    """
-    Фикстура для работы со страницей корзины.
-
-    Args:
-        browser (WebDriver): Экземпляр браузера.
-
-    Returns:
-        CartPage: Объект страницы корзины.
-    """
+    """Фикстура для работы со страницей корзины."""
     return CartPage(browser)
 
 
 @pytest.fixture
 def api():
-    """
-    Фикстура для взаимодействия с API.
-
-    Returns:
-        ApiPage: Экземпляр API-клиента.
-    """
+    """Фикстура для взаимодействия с API."""
     return ApiPage(BASE_URL_API)
